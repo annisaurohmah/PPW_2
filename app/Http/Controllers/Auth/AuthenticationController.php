@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\SendEmail;
+use App\Jobs\SendMailJob;
 
 class AuthenticationController extends Controller
 {
@@ -41,11 +43,22 @@ class AuthenticationController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        $content = [
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'subject' => "Registrasi Berhasil",
+                    'body' => "Akun Anda berhasil terdaftar di website Portofolio Annisa Urohmah",
+                ];
+
         $credentials = $request->only('email', 'password'); //mengambil email dan password dari form
         Auth::attempt($credentials); //mencoba login dengan email dan password yang diambil dari form
+
         $request->session()->regenerate(); //mengatur ulang session
-        return redirect()->route('dashboard')
-        ->withSuccess('You have successfully registered & logged in!'); //redirect ke halaman dashboard
+        dispatch(new SendMailJob($content));
+        return redirect()->route('dashboard')->withSuccess('You have successfully registered & logged in!'); //redirect ke halaman dashboard
+
+    
+        
     }
 
     public function login(){
