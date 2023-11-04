@@ -38,10 +38,28 @@ class LoginRegisterController extends Controller
 
         if ($request->hasFile('photo')) {
             $image = $request->file('photo');
+
+
+            $folderPathOriginal = public_path('storage/photos/original');
+            $folderPathThumbnail = public_path('storage/photos/thumbnail');
+            $folderPathSquare = public_path('storage/photos/square');
+
+            if (!File::isDirectory($folderPathOriginal)) {
+                File::makeDirectory($folderPathOriginal, 0777, true, true);
+            }
+            if (!File::isDirectory($folderPathThumbnail)) {
+                File::makeDirectory($folderPathThumbnail, 0777, true, true);
+            }
+            if (!File::isDirectory($folderPathSquare)) {
+                File::makeDirectory($folderPathSquare, 0777, true, true);
+            }
+
+
             $filenameWithExt = $request->file('photo')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('photo')->getClientOriginalExtension();
             $filenameToStore = $filename . '_' . time() . '.' . $extension;
+            
             $path = $request->file('photo')->storeAs('photos/original', $filenameToStore);
             // Simpan gambar asli
             
