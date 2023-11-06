@@ -15,7 +15,13 @@
         <tr>
             <td>{{ $users->name }}</td>
             <td>{{ $users->email }}</td>
-            <td><img src="{{ asset('storage/photos/thumbnail/'. $users->photo ) }}" width="150px"></td>
+            <td>
+              @if(File::exists(public_path('storage/photos/thumbnail/'. $users->photo )) == false)
+                <p>Not Available</p></td>
+              @else
+                <img src="{{ asset('storage/photos/thumbnail/'. $users->photo ) }}" width="150px"></td>
+              
+              @endif
             <td>
               <div class="d-flex flex-row gap-3">
                 <a class="btn btn-sm btn-primary" href="{{ route('edit', ['id' => $users->id]) }}">Edit</a>
