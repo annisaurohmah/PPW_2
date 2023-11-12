@@ -7,7 +7,10 @@
     <div class="navbar-nav mx-auto py-0 ">
         <a href="#home" class="nav-item nav-link">Portofolio</a>
         <a href="{{ route('landing') }}" class="nav-item nav-link">Back to home</a>
+        
     </div> 
+        <a class="btn btn-reg btn-secondary-gradient rounded-pill py-2 px-4 ms-3 d-none d-lg-block {{ (request()->is('gallery')) ? 'active' : '' }}" href="{{
+                        route('gallery.index') }}">Gallery</a>
         <div class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 {{ Auth::user()->name }}
@@ -20,6 +23,11 @@
                         @csrf
                     </form>
                     </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{{ route('users') }}">Management Users</a>
+                    </li>
+
                 </ul>
         
     </div>

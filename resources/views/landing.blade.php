@@ -8,6 +8,8 @@
                         <a href="#myworks" class="nav-item nav-link">My Works</a>
                         <a href="#contact" class="nav-item nav-link">Contact</a>
                     </div>
+                    <a class="btn btn-reg btn-secondary-gradient rounded-pill py-2 px-4 ms-3 d-none d-lg-block {{ (request()->is('gallery')) ? 'active' : '' }}" href="{{
+                        route('gallery.index') }}">Gallery</a>
                 @guest
                     <a href="{{ route('register') }}" class="btn btn-reg btn-secondary-gradient rounded-pill py-2 px-4 ms-3 d-none d-lg-block {{ (request()->is('register')) ? 'active' : '' }}">Register</a>
                     <a href="{{ route('login') }}" class="btn btn-primary-gradient rounded-pill py-2 px-4 ms-1 d-none d-lg-block {{ (request()->is('register')) ? 'active' : '' }}">Login</a>
@@ -17,7 +19,10 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                            <li class="nav-item text-white">
+                        <a class="nav-link" href="{{ route('users') }}">Management Users</a>
+                    </li>  
+                    <li><a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                 document.getElementById('logout-form').submit();">Logout</a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
@@ -25,8 +30,11 @@
                             </form>
                             </li>
                         </ul>
-                    </div>                            
+                    </div>
+                                              
                     @endguest
+                    
+                    
                 </div>
 @endsection
 
