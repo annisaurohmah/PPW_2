@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GalleryController;     
 
 /*
 |--------------------------------------------------------------------------

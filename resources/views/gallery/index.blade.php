@@ -50,6 +50,7 @@
                     </div>
                         <div class="card-body">
                             <div class="row">
+                                {{ dd($galleries)}}
                                 @if(count($galleries)>0)
                                     @foreach ($galleries as $gallery)
                                     <div class="col-sm-2">
