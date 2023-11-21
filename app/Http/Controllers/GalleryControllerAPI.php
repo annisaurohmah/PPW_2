@@ -116,10 +116,11 @@ class GalleryControllerAPI extends Controller
     {
         $response = Http::get('http://127.0.0.1:8080/api/getgallery');
         $galleriesObject = $response->object();
+
         // Convert galleries object to an array
-        $datas = json_decode(json_encode($galleriesObject), true);
-        // dd($datas);
-        return view('gallery.index', compact('datas'));
+        $galleries = json_decode(json_encode($galleriesObject->galleries), true);
+
+        return view('gallery.index', compact('galleries'));
     }
 
 
