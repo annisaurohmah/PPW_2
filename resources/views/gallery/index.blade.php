@@ -50,17 +50,18 @@
                     </div>
                         <div class="card-body">
                             <div class="row">
+                               
                                 @if(count($galleries)>0)
                                     @foreach ($galleries as $gallery)
                                     <div class="col-sm-2">
                                         <div class="image-container">
                                             <a class="example-image-link" href="{{ asset('storage/posts_image/'.$gallery->picture) }}" data-lightbox="roadtrip" data-title="{{ $gallery->title }}">
-                                                <img class="example-image img-fluid mb-2" src="{{ asset('storage/posts_image/'.$gallery->picture) }}" alt="image-1"/>
+                                                <img class="example-image img-fluid mb-2" src="{{ asset('storage/posts_image/small_'.$gallery->picture) }}" alt="image-1"/>
                                             </a>
                                             <div class="col gap-1 image-actions">
-                                                <a class="btn btn-sm btn-primary-gradient" href="{{ route('gallery.edit', $gallery) }}">Edit</a>
+                                                <a class="btn btn-sm btn-primary-gradient" href="{{ route('gallery.edit', $gallery->id) }}">Edit</a>
 
-                                                <form action="{{ route('gallery.destroy', $gallery) }}" method="POST">
+                                                <form action="{{ route('gallery.destroy', $gallery->id) }}" method="POST">
                                                     @csrf
                                                     @method('DELETE')                    
                                                     <button onclick="return confirm('Are you sure to delete?')" type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -73,7 +74,7 @@
                             <h3 class="text-white">Tidak ada data.</h3>
                                 @endif
                             <div class="d-flex">
-                                {{ $galleries->links() }}
+                            
                             </div>
                         </div>
                     </div>

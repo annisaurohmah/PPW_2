@@ -18,7 +18,7 @@ class GalleryController extends Controller
             'menu' => 'Gallery',
             'galleries' => Post::where('picture', '!=', '')->whereNotNull('picture')->orderBy('created_at', 'desc')->paginate(30)
         );
-        dd($data);
+        // dd($data);
 
         return view('gallery.index')->with($data);
     }

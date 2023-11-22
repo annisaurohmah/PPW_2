@@ -80,5 +80,13 @@
 
     <!-- Template Javascript -->
     <script src="{{ asset('js/main.js') }}"></script>
+    <!-- <script>
+        $.ajax('http://127.0.0.1:8080/api/getgallery', function (data){
+            console.log(data);
+
+            for (let index = 0; index)
+        }
+        )
+    </script> -->
 </body>
 </html>

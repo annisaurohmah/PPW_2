@@ -7,6 +7,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class GalleryControllerAPI extends Controller
 {
@@ -106,22 +107,20 @@ class GalleryControllerAPI extends Controller
      */
     public function get()
     {
-
-        $dataa = Post::all();
-        // dd($data);
-        return response()->json(["galleries" => $dataa]);
+        $data = Post::all();
+        return response()->json(["data" => $data]);
     }
 
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:8080/api/getgallery');
-        $galleriesObject = $response->object();
-
-        // Convert galleries object to an array
-        $galleries = json_decode(json_encode($galleriesObject->galleries), true);
+        $response = Http::get('http://127.0.0.1:8000/api/getgallery');
+        $galleries = $response->object()->data;
+        
+      
 
         return view('gallery.index', compact('galleries'));
     }
+
 
 
 
