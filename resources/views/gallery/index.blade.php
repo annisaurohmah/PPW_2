@@ -74,7 +74,7 @@
                             <h3 class="text-white">Tidak ada data.</h3>
                                 @endif
                             <div class="d-flex">
-                            
+                               
                             </div>
                         </div>
                     </div>

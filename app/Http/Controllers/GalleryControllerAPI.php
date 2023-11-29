@@ -105,19 +105,17 @@ class GalleryControllerAPI extends Controller
      * )
      * )
      */
-    public function get()
+    public function get($limit=10, $offse=0)
     {
-        $data = Post::all();
+        $data = Post::limit($limit)->offset($offse)->get();
         return response()->json(["data" => $data]);
     }
 
     public function index()
     {
-        $response = Http::get('http://127.0.0.1:8000/api/getgallery');
+        $response = Http::get('http://localhost:8000/api/getgallery');
         $galleries = $response->object()->data;
         
-      
-
         return view('gallery.index', compact('galleries'));
     }
 
